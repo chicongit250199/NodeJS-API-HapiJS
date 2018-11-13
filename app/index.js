@@ -11,7 +11,7 @@ require('dotenv').config();
 
 const server = new Hapi.Server({
   host: process.env.APP_HOST,
-  port: process.env.PORT,
+  port: process.env.APP_PORT,
   routes: {
     cors: true,
     validate: {
@@ -47,8 +47,8 @@ const swaggerOptions = {
   host: process.env.HOST,
   basePath: apiVersionOptions.basePath,
   info: {
-    title: 'CSM API Documentation',
-    description: 'This is a CSM API documentation.'
+    title: 'DanaQueue API Documentation',
+    description: 'This is a DanaQueue API documentation.'
   },
   deReference: false
 };
@@ -70,7 +70,7 @@ async function start() {
       hapiAuthJWT
     ]);
     server.auth.strategy('jwt', 'jwt', {
-      key: process.env.JWT_SECRET || 'enouvo123',
+      key: process.env.JWT_SECRET,
       validate: validateUser,
       verifyOptions: { ignoreExpiration: true }
     });
