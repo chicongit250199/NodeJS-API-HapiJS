@@ -55,7 +55,6 @@ exports.login = async (username, password) => {
     const data = _.pick(user, ['username', 'id', 'scope']);
     return _.assign({ token: createJwtToken(data) }, data);
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };

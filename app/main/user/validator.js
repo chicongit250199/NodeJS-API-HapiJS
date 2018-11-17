@@ -23,10 +23,9 @@ exports.createUser = {
 };
 
 exports.updateUser = {
-  fullName: Joi.string().required(),
-  username: strUsername().required(),
-  email: strEmail().required(),
-  password: strPassword().required(),
-  roleId: Joi.number().required(),
+  fullName: Joi.string(),
+  email: strEmail(),
+  password: strPassword(),
+  roleId: Joi.number(),
   isDisabled: Joi.boolean()
 };
