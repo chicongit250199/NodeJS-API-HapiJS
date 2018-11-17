@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-exports.register = {
+exports.login = {
   username: Joi.string()
     .required()
     .trim()
@@ -13,7 +13,15 @@ exports.register = {
     .error(new Error('Please enter your password!'))
 };
 
-exports.login = {
+exports.register = {
+  fullName: Joi.string()
+    .required()
+    .label('FullName')
+    .error(new Error('Please enter your fullName!')),
+  email: Joi.string()
+    .required()
+    .label('Email')
+    .error(new Error('Please enter your email!')),
   username: Joi.string()
     .required()
     .trim()

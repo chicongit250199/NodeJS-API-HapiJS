@@ -5,6 +5,7 @@ const Inert = require('inert');
 const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
 const hapiAuthJWT = require('hapi-auth-jwt2');
+const Mrhorse = require('mrhorse');
 const routes = require('./main/routes');
 
 require('dotenv').config();
@@ -47,8 +48,8 @@ const swaggerOptions = {
   host: process.env.HOST,
   basePath: apiVersionOptions.basePath,
   info: {
-    title: 'DanaQueue API Documentation',
-    description: 'This is a DanaQueue API documentation.'
+    title: 'Codebase API Documentation',
+    description: 'This is a Codebase API documentation.'
   },
   deReference: false
 };
@@ -67,7 +68,13 @@ async function start() {
         plugin: HapiSwagger,
         options: swaggerOptions
       },
-      hapiAuthJWT
+      hapiAuthJWT,
+      {
+        plugin: Mrhorse,
+        options: {
+          policyDirectory: `${__dirname}/policies`
+        }
+      }
     ]);
     server.auth.strategy('jwt', 'jwt', {
       key: process.env.JWT_SECRET,

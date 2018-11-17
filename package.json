@@ -10,7 +10,7 @@
     "start": "node app",
     "dev": "NODE_ENV=development nodemon",
     "lint": "eslint '**/*.{js,jsx}' --quiet",
-    "watch:lint": "node node_modules/eslint-watch/bin/esw -w --no-ignore",
+    "watch:lint": "node node_modules/eslint-watch/bin/esw -w --fix",
     "format": "prettier --write '**/*.{js,jsx}'"
   },
   "keywords": [],
@@ -29,8 +29,9 @@
     "jsonwebtoken": "^8.3.0",
     "knex": "^0.15.2",
     "lodash": "^4.17.11",
+    "mrhorse": "^3.0.1",
     "objection": "^1.4.0",
-    "objection-filter": "^1.4.0",
+    "objection-filter": "github:longnt189/objection-filter#89c31a790d63badeccaa106f6476794c0592aa54",
     "pg": "^7.6.1",
     "vision": "^5.4.3"
   },

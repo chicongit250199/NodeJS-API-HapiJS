@@ -4,6 +4,9 @@ const USER_ROLE = {
   USER: 3
 };
 
+const SALT_ROUNDS = 10;
+
 module.exports = {
-  USER_ROLE
+  USER_ROLE,
+  SALT_ROUNDS
 };

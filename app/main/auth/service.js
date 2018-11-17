@@ -6,8 +6,7 @@ const _ = require('lodash');
 const Models = require('../../database/models');
 const CONSTANTS = require('../../constants');
 
-const secret = process.env.JWT_SECRET || 'enouvo123';
-const saltRounds = process.env.SALT_ROUNDS || 10;
+const secret = process.env.JWT_SECRET || 'codebase';
 
 const createJwtToken = data =>
   jsonwebtoken.sign(
@@ -17,13 +16,13 @@ const createJwtToken = data =>
     secret
   );
 
-exports.register = async ({ username, password }) => {
+exports.register = async (username, password) => {
   const user = await Models.User.query().findOne({ username });
   if (user) {
     return Boom.conflict('User is exist');
   }
 
-  const hashPassword = await bcrypt.hash(password, saltRounds);
+  const hashPassword = await bcrypt.hash(password, CONSTANTS.SALT_ROUNDS);
   const result = await Models.User.query().insertGraph({
     username,
     password: hashPassword,
@@ -34,7 +33,7 @@ exports.register = async ({ username, password }) => {
   return _.assign({ token: createJwtToken(data) }, data);
 };
 
-exports.login = async ({ username, password }) => {
+exports.login = async (username, password) => {
   try {
     const user = await Models.User.query()
       .findOne({ username })
@@ -43,16 +42,20 @@ exports.login = async ({ username, password }) => {
     if (!user) {
       return Boom.conflict('User is not found');
     }
+
     if (!user.hashPassword) {
       return Boom.conflict('User can not login with email and password');
     }
+
     const isCorrectPassword = await bcrypt.compare(password, user.hashPassword);
     if (!isCorrectPassword) {
       return Boom.forbidden('Incorrect password');
     }
+
     const data = _.pick(user, ['username', 'id', 'scope']);
     return _.assign({ token: createJwtToken(data) }, data);
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

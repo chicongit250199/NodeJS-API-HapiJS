@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-
 const Models = require('../models');
+const { SALT_ROUNDS } = require('../../constants');
 
 exports.seed = knex =>
   // Deletes ALL existing entries
@@ -26,22 +26,24 @@ exports.seed = knex =>
     .then(async roles =>
       Models.User.query().insertGraph([
         {
-          email: 'superadmin@danaqueue.com',
-          username: 'superadmin',
-          password: bcrypt.hashSync('enouvo123', 5),
           fullName: 'Super Admin',
+          username: 'superadmin',
+          email: 'superadmin@codebase.com',
+          password: bcrypt.hashSync('codebase', SALT_ROUNDS),
           roleId: roles[0].id
         },
         {
-          email: 'admin@danaqueue.com',
-          username: 'admin',
-          password: bcrypt.hashSync('enouvo123', 5),
           fullName: 'Admin',
+          username: 'admin',
+          email: 'admin@codebase.com',
+          password: bcrypt.hashSync('codebase', SALT_ROUNDS),
           roleId: roles[1].id
         },
         {
-          email: 'user@danaqueue.com',
           fullName: 'User',
+          username: 'user',
+          email: 'user@codebase.com',
+          password: bcrypt.hashSync('codebase', SALT_ROUNDS),
           roleId: roles[2].id
         }
       ])
