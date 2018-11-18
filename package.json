@@ -48,7 +48,7 @@
     "lodash": "^4.17.11",
     "mrhorse": "^3.0.1",
     "objection": "^1.4.0",
-    "objection-filter": "github:longnt189/objection-filter#89c31a790d63badeccaa106f6476794c0592aa54",
+    "objection-filter": "github:longnt189/objection-filter#f97b8773ec279a9264eea0f9c51b2af131cd1c1b",
     "pg": "^7.6.1",
     "vision": "^5.4.3"
   },

@@ -31,8 +31,8 @@ const queryParams = {
     .max(50)
     .default(10),
   offset: Joi.number().default(0),
-  orderBy: Joi.string(),
-  filter: Joi.string(),
+  where: Joi.string(),
+  eager: Joi.string(),
   fields: Joi.string()
 };
 
