@@ -12,14 +12,6 @@ class CustomQueryBuilder extends QueryBuilder {
 
     return this.insert(model);
   }
-
-  queryBuilder(query) {
-    if (query.page && query.pageSize) {
-      return this.page(query.page, query.pageSize);
-    }
-
-    return this.page(0, 50);
-  }
 }
 
 class CustomModel extends Model {
@@ -28,10 +20,6 @@ class CustomModel extends Model {
   }
 
   static queryBuilder(query) {
-    if (query.filter) {
-      query.filter = JSON.parse(query.filter);
-    }
-
     return buildFilter(this).build(query);
   }
 
