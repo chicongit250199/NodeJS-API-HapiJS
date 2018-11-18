@@ -32,8 +32,8 @@ const queryParams = {
     .default(10),
   offset: Joi.number().default(0),
   order: Joi.string(),
-  eager: Joi.string(),
-  fields: Joi.string()
+  eager: Joi.object(),
+  fields: Joi.array()
 };
 
 const checkToken = Joi.object({
