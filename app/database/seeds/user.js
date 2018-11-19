@@ -28,22 +28,19 @@ exports.seed = knex =>
         {
           fullName: 'Super Admin',
           username: 'superadmin',
-          email: 'superadmin@danaqueue.com',
-          password: bcrypt.hashSync('danaqueue', SALT_ROUNDS),
+          password: bcrypt.hashSync('codebase', SALT_ROUNDS),
           roleId: roles[0].id
         },
         {
           fullName: 'Admin',
           username: 'admin',
-          email: 'admin@danaqueue.com',
-          password: bcrypt.hashSync('danaqueue', SALT_ROUNDS),
+          password: bcrypt.hashSync('codebase', SALT_ROUNDS),
           roleId: roles[1].id
         },
         {
           fullName: 'User',
           username: 'user',
-          email: 'user@danaqueue.com',
-          password: bcrypt.hashSync('danaqueue', SALT_ROUNDS),
+          password: bcrypt.hashSync('codebase', SALT_ROUNDS),
           roleId: roles[2].id
         }
       ])

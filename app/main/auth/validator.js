@@ -18,10 +18,6 @@ exports.register = {
     .required()
     .label('FullName')
     .error(new Error('Please enter your fullName!')),
-  email: Joi.string()
-    .required()
-    .label('Email')
-    .error(new Error('Please enter your email!')),
   username: Joi.string()
     .required()
     .trim()

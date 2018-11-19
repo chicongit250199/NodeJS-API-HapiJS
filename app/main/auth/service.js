@@ -6,7 +6,7 @@ const _ = require('lodash');
 const Models = require('../../database/models');
 const CONSTANTS = require('../../constants');
 
-const secret = process.env.JWT_SECRET || 'danaqueue';
+const secret = process.env.JWT_SECRET || 'codebase';
 
 const createJwtToken = data =>
   jsonwebtoken.sign(
@@ -44,7 +44,7 @@ exports.login = async (username, password) => {
     }
 
     if (!user.hashPassword) {
-      return Boom.conflict('User can not login with email and password');
+      return Boom.conflict('User can not login with username and password');
     }
 
     const isCorrectPassword = await bcrypt.compare(password, user.hashPassword);

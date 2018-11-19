@@ -48,8 +48,8 @@ const swaggerOptions = {
   host: process.env.HOST,
   basePath: apiVersionOptions.basePath,
   info: {
-    title: 'DanaQueue API Documentation',
-    description: 'This is a DanaQueue API documentation.'
+    title: 'RESTful API base Documentation',
+    description: 'This is a RESTful API base documentation.'
   },
   deReference: false
 };

@@ -5,7 +5,7 @@ const BASE_DB_PATH = path.join(__dirname, 'app', 'database');
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://postgres:123456@localhost:5432/DanaQueue',
+    connection: 'postgres://postgres:123456@localhost:5432/Codebase',
     migrations: {
       directory: path.join(BASE_DB_PATH, 'migrations')
     },
@@ -16,7 +16,7 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection: 'postgres://postgres:123456@localhost:5432/DanaQueue',
+    connection: 'postgres://postgres:123456@localhost:5432/CodebaseTest',
     migrations: {
       directory: path.join(BASE_DB_PATH, 'migrations')
     },

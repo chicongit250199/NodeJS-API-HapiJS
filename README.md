@@ -1,12 +1,12 @@
-# DanaQueue base — Starter Files
+# RESTful API base — Starter Files
 
 ## Requirements
 
 > Node.js v8.x with `async/await`
 >
-> This version of DanaQueue base uses **hapi v17**. For hapi v16, use a [`1.x` release](https://gitlab.com/longnt189/restful-api-base/issues)
+> This version of RESTful API base uses **hapi v17**. For hapi v16, use a [`1.x` release](https://gitlab.com/longnt189/restful-api-base/issues)
 
-The DanaQueue base Starter Kit uses hapi v17 and has full `async/await` support.
+The RESTful API base Starter Kit uses hapi v17 and has full `async/await` support.
 
 **Requirements**
 
@@ -15,7 +15,7 @@ The DanaQueue base Starter Kit uses hapi v17 and has full `async/await` support.
 
 ## Setup and Run
 
-To run your own DanaQueue base instance, clone this repository, install the dependencies, start a postgreSQL instance on your own machine.
+To run your own RESTful API base instance, clone this repository, install the dependencies, start a postgreSQL instance on your own machine.
 
 ```bash
 # clone repository
@@ -23,7 +23,7 @@ git@gitlab.com/longnt189/restful-api-base.git
 cd project
 
 # install dependencies
-npm install
+yarn install
 
 # create database with pgAdmin4
 

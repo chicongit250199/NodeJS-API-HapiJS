@@ -1,11 +1,5 @@
 const Joi = require('joi');
-const {
-  idNumber,
-  queryParams,
-  strUsername,
-  strEmail,
-  strPassword
-} = require('../../utils/validatorUtils');
+const { idNumber, queryParams, strUsername, strPassword } = require('../../utils/validatorUtils');
 
 exports.queryParams = queryParams;
 
@@ -16,16 +10,14 @@ exports.idParam = idNumber()
 exports.createUser = {
   fullName: Joi.string().required(),
   username: strUsername().required(),
-  email: strEmail().required(),
   password: strPassword().required(),
-  roleId: Joi.number().required(),
-  isDisabled: Joi.boolean()
+  roleId: Joi.number()
+    .required()
+    .default(3)
 };
 
 exports.updateUser = {
   fullName: Joi.string(),
-  email: strEmail(),
   password: strPassword(),
-  roleId: Joi.number(),
-  isDisabled: Joi.boolean()
+  roleId: Joi.number().default(3)
 };

@@ -3,7 +3,6 @@ exports.up = knex =>
     table.increments('id').primary();
     table.string('fullName');
     table.string('username', 191).unique();
-    table.string('email', 191).unique();
     table.string('password');
     table.integer('roleId');
     table

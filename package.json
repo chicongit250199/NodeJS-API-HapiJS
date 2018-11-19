@@ -1,5 +1,5 @@
 {
-  "name": "dana-queue",
+  "name": "codebase",
   "version": "1.0.0",
   "description": "",
   "main": "app",
@@ -24,15 +24,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/long.nguyen.enouvo/danaqueue.git"
+    "url": "git+https://gitlab.com/longnt189/restful-api-base.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/long.nguyen.enouvo/danaqueue/issues"
+    "url": "https://gitlab.com/longnt189/restful-api-base/issues"
   },
-  "homepage": "https://gitlab.com/long.nguyen.enouvo/danaqueue#readme",
+  "homepage": "https://gitlab.com/longnt189/restful-api-base#readme",
   "dependencies": {
     "bcrypt": "^3.0.2",
     "boom": "^7.2.2",

@@ -1,5 +1,6 @@
 const Boom = require('boom');
 const bcrypt = require('bcrypt');
+const _ = require('lodash');
 const Models = require('../../database/models');
 const { SALT_ROUNDS } = require('../../constants');
 
@@ -20,20 +21,13 @@ exports.getOneUser = async id => {
 
 exports.createUser = async body => {
   try {
-    const { email, username } = body;
-    const checkUsername = await Models.User.query().findOne({
+    const { username } = body;
+    const checkUser = await Models.User.query().findOne({
       username
     });
 
-    if (checkUsername) {
+    if (checkUser) {
       throw Boom.badRequest('Username is exist');
-    }
-
-    const checkEmail = await Models.User.query().findOne({
-      email
-    });
-    if (checkEmail) {
-      throw Boom.badRequest('Email is exist');
     }
 
     body.password = await bcrypt.hash(body.password, SALT_ROUNDS);
@@ -54,7 +48,15 @@ exports.updateUser = async (id, body) => {
       body.password = await bcrypt.hash(body.password, SALT_ROUNDS);
     }
 
-    const result = await Models.User.query().patchAndFetchById(id, body);
+    const fields = _.keys(body);
+    const result = await Models.User.query()
+      .patchAndFetchById(id, body)
+      .then(user =>
+        Models.User.query()
+          .findById(user.id)
+          .select(['id', ...fields])
+      );
+
     if (!result) {
       throw Boom.notFound('User not found');
     }
@@ -67,7 +69,14 @@ exports.updateUser = async (id, body) => {
 
 exports.deleteUser = async id => {
   try {
-    const result = await Models.User.query().patchAndFetchById(id, { isDisabled: true });
+    const result = await Models.User.query()
+      .patchAndFetchById(id, { isDisabled: true })
+      .then(user =>
+        Models.User.query()
+          .findById(user.id)
+          .select(['id', 'isDisabled'])
+      );
+
     if (!result) {
       throw Boom.notFound('User not found');
     }

@@ -16,12 +16,11 @@ async function loadFixture(fixtures) {
 
 function withAuth(options, role) {
   const user = {
-    email: 'admin@danaqueue.com',
     username: 'admin',
     id: 1,
     scope: role
   };
-  const authToken = jwt.sign(user, 'danaqueue');
+  const authToken = jwt.sign(user, 'codebase');
   return _.assign(options, {
     headers: { Authorization: `Bearer ${authToken}` }
   });
