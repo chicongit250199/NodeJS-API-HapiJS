@@ -5,22 +5,22 @@ const data = [
   {
     fullName: 'Super Admin',
     username: 'superadmin',
-    email: 'superadmin@codebase.com',
-    password: bcrypt.hashSync('codebase', SALT_ROUNDS),
+    email: 'superadmin@danaqueue.com',
+    password: bcrypt.hashSync('danaqueue', SALT_ROUNDS),
     roleId: 1
   },
   {
     fullName: 'Admin',
     username: 'admin',
-    email: 'admin@codebase.com',
-    password: bcrypt.hashSync('codebase', SALT_ROUNDS),
+    email: 'admin@danaqueue.com',
+    password: bcrypt.hashSync('danaqueue', SALT_ROUNDS),
     roleId: 2
   },
   {
     fullName: 'User',
     username: 'user',
-    email: 'user@codebase.com',
-    password: bcrypt.hashSync('codebase', SALT_ROUNDS),
+    email: 'user@danaqueue.com',
+    password: bcrypt.hashSync('danaqueue', SALT_ROUNDS),
     roleId: 3
   }
 ];

@@ -6,7 +6,7 @@ const _ = require('lodash');
 const Models = require('../../database/models');
 const CONSTANTS = require('../../constants');
 
-const secret = process.env.JWT_SECRET || 'codebase';
+const secret = process.env.JWT_SECRET || 'danaqueue';
 
 const createJwtToken = data =>
   jsonwebtoken.sign(

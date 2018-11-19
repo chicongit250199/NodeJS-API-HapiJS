@@ -39,8 +39,8 @@ describe('Testing user and auth API', () => {
       const payload = {
         fullName: 'Developer',
         username: 'developer',
-        email: 'dev@codebase.com',
-        password: 'codebase',
+        email: 'dev@danaqueue.com',
+        password: 'danaqueue',
         roleId: USER_ROLE.USER
       };
 
@@ -133,7 +133,7 @@ describe('Testing user and auth API', () => {
     test('<200> should login user success', async () => {
       const payload = {
         username: 'admin',
-        password: 'codebase'
+        password: 'danaqueue'
       };
 
       const response = await server.inject({
@@ -152,8 +152,8 @@ describe('Testing user and auth API', () => {
       const payload = {
         fullName: 'Test',
         username: 'Test',
-        email: 'test@codebase.com',
-        password: 'codebase'
+        email: 'test@danaqueue.com',
+        password: 'danaqueue'
       };
 
       const response = await server.inject({
