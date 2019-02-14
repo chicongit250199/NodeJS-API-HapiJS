@@ -4,9 +4,9 @@ const _ = require('lodash');
 const Models = require('../../database/models');
 const { SALT_ROUNDS } = require('../../constants');
 
-exports.getAllUser = async query => Models.User.queryBuilder(query);
+exports.getMany = async query => Models.User.queryBuilder(query);
 
-exports.getOneUser = async id => {
+exports.getOne = async id => {
   try {
     const result = await Models.User.query().findById(id);
     if (!result) {
@@ -19,7 +19,7 @@ exports.getOneUser = async id => {
   }
 };
 
-exports.createUser = async body => {
+exports.createOne = async body => {
   try {
     const { username } = body;
     const checkUser = await Models.User.query().findOne({
@@ -42,7 +42,7 @@ exports.createUser = async body => {
   }
 };
 
-exports.updateUser = async (id, body) => {
+exports.updateOne = async (id, body) => {
   try {
     if (body.password) {
       body.password = await bcrypt.hash(body.password, SALT_ROUNDS);
@@ -67,7 +67,7 @@ exports.updateUser = async (id, body) => {
   }
 };
 
-exports.deleteUser = async id => {
+exports.deleteOne = async id => {
   try {
     const result = await Models.User.query()
       .patchAndFetchById(id, { isDisabled: true })

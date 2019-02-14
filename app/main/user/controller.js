@@ -2,7 +2,7 @@ const service = require('./service');
 
 exports.getMany = async request => {
   try {
-    return await service.getAllUser(request.query);
+    return await service.getMany(request.query);
   } catch (error) {
     throw error;
   }
@@ -11,7 +11,7 @@ exports.getMany = async request => {
 exports.getOne = async request => {
   try {
     const { id } = request.params;
-    return await service.getOneUser(id);
+    return await service.getOne(id);
   } catch (error) {
     throw error;
   }
@@ -20,7 +20,7 @@ exports.getOne = async request => {
 exports.createOne = async request => {
   try {
     const { payload } = request;
-    return await service.createUser(payload);
+    return await service.createOne(payload);
   } catch (error) {
     throw error;
   }
@@ -30,7 +30,7 @@ exports.updateOne = async request => {
   try {
     const { params, payload } = request;
     const { id } = params;
-    return await service.updateUser(id, payload);
+    return await service.updateOne(id, payload);
   } catch (error) {
     throw error;
   }
@@ -39,7 +39,7 @@ exports.updateOne = async request => {
 exports.deleteOne = async request => {
   try {
     const { id } = request.params;
-    return await service.deleteUser(id);
+    return await service.deleteOne(id);
   } catch (error) {
     throw error;
   }

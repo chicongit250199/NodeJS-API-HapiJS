@@ -7,7 +7,7 @@ exports.idParam = idNumber()
   .required()
   .description('id is required');
 
-exports.createUser = {
+exports.create = {
   fullName: Joi.string().required(),
   username: strUsername().required(),
   password: strPassword().required(),
@@ -16,7 +16,7 @@ exports.createUser = {
     .default(3)
 };
 
-exports.updateUser = {
+exports.update = {
   fullName: Joi.string(),
   password: strPassword(),
   roleId: Joi.number().default(3)

@@ -32,7 +32,7 @@ exports.createOne = {
   handler: controller.createOne,
   auth: false,
   validate: {
-    payload: validator.createUser
+    payload: validator.create
   }
 };
 
@@ -46,7 +46,7 @@ exports.updateOne = {
     params: {
       id: validator.idParam
     },
-    payload: validator.updateUser
+    payload: validator.update
   }
 };
 
