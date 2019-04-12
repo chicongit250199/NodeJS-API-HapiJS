@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node app",
     "dev": "NODE_ENV=development nodemon",
-    "lint": "eslint '**/*.{js,jsx}' --quiet",
+    "lint": "./node_modules/.bin/eslint '**/*.{js,jsx}' --quiet",
     "watch:lint": "node node_modules/eslint-watch/bin/esw -w --fix",
     "format": "prettier --write '**/*.{js,jsx}'",
     "test": "NODE_ENV=test APP_PORT=4000 jest --forceExit --verbose --detectOpenHandles",

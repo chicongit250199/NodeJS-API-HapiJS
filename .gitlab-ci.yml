@@ -14,8 +14,7 @@ test:
     - deploy
   before_script:
     - rm -rf /tmp/*
-    - npm install -g eslint
-    - npm install --no-cache
+    - npm i --no-cache
   script:
     - npm run lint
 
@@ -33,7 +32,25 @@ release:
     - docker info
     - 'docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY'
   script:
-    - 'docker build -t ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest --pull .'
+    - 'docker build -t ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest --pull . --force-rm'
     - 'docker push ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest'
   after_script:
     - 'docker logout ${CI_REGISTRY}'
+
+deploy:
+  stage: deploy
+  image: gitlab/dind:latest
+  only:
+    - deploy
+  environment: development
+  services:
+    - docker:dind
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - eval "$(ssh-agent -s)"
+    - ssh-add ~/.ssh/id_rsa
+    - ssh-keyscan -H $DEPLOYMENT_SERVER_IP >> ~/.ssh/known_hosts
+  script:
+    - ssh root@$DEPLOYMENT_SERVER_IP "docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}; docker-compose stop; docker-compose rm --f node; docker pull ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest; docker-compose up -d; docker logout ${CI_REGISTRY}"

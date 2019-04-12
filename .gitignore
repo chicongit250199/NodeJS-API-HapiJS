@@ -85,3 +85,6 @@ typings/
 
 #Ignore build folder
 build
+
+# Docker failed
+false
