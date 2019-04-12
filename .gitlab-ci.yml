@@ -8,13 +8,12 @@ stages:
 
 docker-test:
   stage: test
-  image: node:8-alpine
+  image: node:8
   before_script:
     - apk add --update bash
     - apk add --update git && rm -rf /tmp/* /var/cache/apk/*
     - npm install -g eslint
-    - ls
-    - npm install
+    - npm install --no-cache
   script:
     - npm run lint
   artifacts:
