@@ -1,0 +1,35 @@
+### Git ###
+.git*
+.gitignore
+
+### Node.js ###
+# Dependency directories
+node_modules/
+coverage/
+
+# Docker file
+.dockerignore
+Dockerfile
+
+# Logs
+logs
+*.log
+*.log.[0-9]
+log*
+
+# Coverage directory
+lib-cov
+coverage
+.nyc_output
+
+# Optional NPM cache directory
+.npm*
+
+### Project ###
+# Metafiles
+.eslintrc
+.editorconfig
+.gitlab-ci.yml
+
+# dotenv environment variables file
+.env
