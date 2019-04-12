@@ -10,7 +10,6 @@ docker-test:
   stage: test
   image: node:8
   before_script:
-    - npm install --cache /tmp/empty-cache
     - npm install -g eslint
     - npm install --only=dev
   script:
