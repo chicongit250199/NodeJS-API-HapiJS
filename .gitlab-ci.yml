@@ -8,6 +8,7 @@ stages:
 
 docker-test:
   stage: test
+  image: node:8-alpine
   before_script:
     - apk add --update bash
     - apk add --update git && rm -rf /tmp/* /var/cache/apk/*
