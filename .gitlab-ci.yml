@@ -1,3 +1,8 @@
+cache:
+  key: '$CI_BUILD_REF_NAME node:8'
+  paths:
+    - node_modules/
+
 stages:
   - test
 
@@ -9,6 +14,6 @@ docker-test:
     - npm install -g eslint
     - npm install --no-cache
   script:
-    - eslint '**/*.{js,jsx}' --quiet
+    - npm run lint
   only:
     - deploy
