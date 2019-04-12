@@ -12,7 +12,7 @@ docker-test:
   before_script:
     - apk add --update bash
     - apk add --update git && rm -rf /tmp/* /var/cache/apk/*
-    - npm install
+    - npm install -g eslint
   script:
     - npm run lint
   artifacts:
