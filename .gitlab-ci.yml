@@ -5,15 +5,35 @@ cache:
 
 stages:
   - test
+  - release
 
-docker-test:
+test:
   stage: test
   image: node:8
+  only:
+    - deploy
   before_script:
     - rm -rf /tmp/*
     - npm install -g eslint
     - npm install --no-cache
   script:
     - npm run lint
+
+release:
+  stage: release
+  image: docker:latest
   only:
     - deploy
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay2
+before_script:
+    - docker version
+    - docker info
+    - "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
+  script:
+    - "docker build -t ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest --pull ."
+    - "docker push ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest"
+  after_script:
+    - "docker logout ${CI_REGISTRY}"
