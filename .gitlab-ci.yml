@@ -6,8 +6,8 @@ cache:
 stages:
   - test
 
-test:
-  stage: deploy
+docker-test:
+  stage: test
   before_script:
     - apk add --update bash
     - apk add --update git && rm -rf /tmp/* /var/cache/apk/*
@@ -18,3 +18,5 @@ test:
     paths:
       - server/
       - public/
+  only:
+    - deploy
