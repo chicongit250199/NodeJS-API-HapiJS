@@ -13,6 +13,8 @@ docker-test:
     - apk add --update bash
     - apk add --update git && rm -rf /tmp/* /var/cache/apk/*
     - npm install -g eslint
+    - ls
+    - npm install
   script:
     - npm run lint
   artifacts:
