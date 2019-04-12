@@ -1,5 +1,5 @@
 cache:
-  key: '$CI_BUILD_REF_NAME node:8-alpine'
+  key: '$CI_BUILD_REF_NAME node:8'
   paths:
     - node_modules/
 
@@ -10,14 +10,10 @@ docker-test:
   stage: test
   image: node:8
   before_script:
-    - rm -rf /tmp/* /var/cache/apk/*
+    - npm install --cache /tmp/empty-cache
     - npm install -g eslint
-    - npm install --no-cache
+    - npm install
   script:
-    - npm run lint
-  artifacts:
-    paths:
-      - server/
-      - public/
+    - eslint '**/*.{js,jsx}' --quiet
   only:
     - deploy
