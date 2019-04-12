@@ -11,7 +11,7 @@ docker-test:
   image: node:8
   before_script:
     - npm install -g eslint
-    - npm install --only=dev
+    - npm install --no-cache
   script:
     - eslint '**/*.{js,jsx}' --quiet
   only:
