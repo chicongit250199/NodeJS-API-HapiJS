@@ -6,8 +6,9 @@ cache:
 stages:
   - test
   - release
+  - deploy
 
-test:
+eslint-test:
   stage: test
   image: node:8
   only:
@@ -18,7 +19,7 @@ test:
   script:
     - npm run lint
 
-release:
+docker-release:
   stage: release
   image: docker:latest
   only:
@@ -37,7 +38,7 @@ release:
   after_script:
     - 'docker logout ${CI_REGISTRY}'
 
-deploy:
+docker-deploy:
   stage: deploy
   image: gitlab/dind:latest
   only:
