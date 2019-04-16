@@ -2,10 +2,8 @@ FROM node:8
 
 WORKDIR /usr/app
 
-COPY package.json .
+COPY . /usr/app
 RUN npm install --production --no-cache
+RUN npm install pm2 -g
 
-COPY . .
-EXPOSE 8080
-
-CMD node app
+CMD ["pm2", "start", "--no-daemon", "processes.json"]
