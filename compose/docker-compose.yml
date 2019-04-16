@@ -1,8 +1,7 @@
 version: '3'
 
 volumes:
-  base:
-  base/node_modules:
+  node_modules:
   postgres:
 
 services:
@@ -10,8 +9,8 @@ services:
     restart: always
     image: registry.gitlab.com/longnt189/restful-api-base:latest
     volumes:
-      - base:/usr/app/
-      - base/node_modules:/usr/app/node_modules
+      - .:/usr/app/
+      - node_modules:/usr/app/node_modules
     depends_on:
       - postgres
     environment:
