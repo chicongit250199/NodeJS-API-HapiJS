@@ -2,6 +2,7 @@ version: '3'
 
 volumes:
   base:
+  base/node_modules:
   postgres:
 
 services:
