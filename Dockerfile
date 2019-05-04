@@ -2,7 +2,10 @@ FROM node:8
 
 WORKDIR /usr/app
 
-COPY . /usr/app
+COPY package.json ./
 RUN npm install --production --no-cache
 
-CMD npm run start
+COPY . .
+EXPOSE 8080
+
+CMD ["npm", "start"]

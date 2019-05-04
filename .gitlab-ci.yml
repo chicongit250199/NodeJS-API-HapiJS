@@ -1,5 +1,5 @@
 cache:
-  key: '$CI_BUILD_REF_NAME node:8'
+  key: '$CI_BUILD_REF_NAME node:8-alpine'
   paths:
     - node_modules/
 
@@ -10,7 +10,7 @@ stages:
 
 eslint-test:
   stage: test
-  image: node:8
+  image: node:8-alpine
   only:
     - deploy
   before_script:
