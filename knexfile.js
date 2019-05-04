@@ -1,11 +1,12 @@
 const path = require('path');
+require('dotenv').config();
 
 const BASE_DB_PATH = path.join(__dirname, 'app', 'database');
 
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://postgres:123456@localhost:5432/Codebase',
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: path.join(BASE_DB_PATH, 'migrations')
     },
@@ -16,7 +17,7 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection: 'postgres://postgres:123456@localhost:5432/CodebaseTest',
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: path.join(BASE_DB_PATH, 'migrations')
     },
