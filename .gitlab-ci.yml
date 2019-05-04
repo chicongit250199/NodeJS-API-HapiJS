@@ -54,6 +54,5 @@ docker-deploy:
     - ssh-add ~/.ssh/id_rsa
     - ssh-keyscan -H $DEPLOYMENT_SERVER_IP >> ~/.ssh/known_hosts
   script:
-    - printf "NODE_ENV=development\nAPP_PORT=8080\n" > environment.env
-    - scp -r ./environment.env ./compose/docker-compose.yml root@${DEPLOYMENT_SERVER_IP}:~/
-    - ssh root@$DEPLOYMENT_SERVER_IP "docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}; docker-compose -f docker-compose.yml stop; docker-compose -f docker-compose.yml rm --f node; docker pull ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest; docker-compose -f docker-compose.yml up -d; docker logout ${CI_REGISTRY}"
+    - scp -r ./compose/docker-compose.yml root@${DEPLOYMENT_SERVER_IP}:~/home/api-base
+    - ssh root@${DEPLOYMENT_SERVER_IP}:~/home/api-base "docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}; docker-compose -f docker-compose.yml stop; docker-compose -f docker-compose.yml rm --f node; docker pull ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest; docker-compose -f docker-compose.yml up -d; docker logout ${CI_REGISTRY}"

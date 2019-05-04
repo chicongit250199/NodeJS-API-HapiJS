@@ -9,7 +9,6 @@ services:
     restart: always
     image: registry.gitlab.com/longnt189/restful-api-base:latest
     volumes:
-      - .:/usr/app/
       - node_modules:/usr/app/node_modules
     depends_on:
       - postgres
