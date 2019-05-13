@@ -35,6 +35,9 @@ services:
       - '5432:5432'
   nginx:
     image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./compose/nginx:/etc/nginx/conf.d
     links:
       - node
     ports:
