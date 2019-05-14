@@ -7,24 +7,30 @@ volumes:
 networks:
   postgres:
     driver: bridge
+  default:
+    external:
+      name: nginx-proxy
 
 services:
-  node:
+  api-base:
     restart: always
     image: registry.gitlab.com/longnt189/restful-api-base:latest
+    container_name: api-base
     volumes:
       - node_modules:/usr/app/node_modules
     depends_on:
       - postgres
     environment:
+      - VIRTUAL_HOST=test.citya.vn
       - NODE_ENV=development
       - APP_HOST=0.0.0.0
       - APP_PORT=8080
       - DATABASE_URL=postgres://postgres:123456@postgres:5432/Codebase
-    ports:
-      - '8080:8080'
+    expose:
+      - 8080
   postgres:
     image: postgres
+    container_name: postgres
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=Codebase
@@ -33,13 +39,12 @@ services:
       - postgres:/data/postgres
     ports:
       - '5432:5432'
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    volumes:
-      - ./compose/nginx:/etc/nginx/conf.d
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
     links:
-      - node
+      - api-base
     ports:
       - '80:80'
-      - '443:443'
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
