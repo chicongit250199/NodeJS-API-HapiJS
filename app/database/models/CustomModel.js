@@ -9,8 +9,15 @@ class CustomQueryBuilder extends QueryBuilder {
     if (model.id) {
       return this.update(model).where('id', model.id);
     }
-
     return this.insert(model);
+  }
+
+  queryBuilder(query) {
+    if (query.page && query.pageSize) {
+      return this.page(query.page, query.pageSize);
+    }
+
+    return this.page(0, 50);
   }
 }
 
@@ -19,7 +26,11 @@ class CustomModel extends Model {
     return CustomQueryBuilder;
   }
 
-  static queryBuilder(query) {
+  static get $isMultiTenantModel() {
+    return false;
+  }
+
+  static queryBuilder(query, tenantSlug) {
     return buildFilter(this).build(query);
   }
 

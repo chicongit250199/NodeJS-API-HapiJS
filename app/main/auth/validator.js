@@ -1,31 +1,27 @@
 const Joi = require('joi');
+const BaseValidator = require('../../base/BaseValidator');
 
-exports.login = {
-  username: Joi.string()
-    .required()
-    .trim()
-    .label('Username')
-    .error(new Error('Please enter your username!')),
-  password: Joi.string()
-    .required()
-    .trim()
-    .label('Password')
-    .error(new Error('Please enter your password!'))
-};
+class AuthValidator extends BaseValidator {
+  constructor() {
+    super();
+    this.login = this.login();
+    this.register = this.register();
+  }
 
-exports.register = {
-  fullName: Joi.string()
-    .required()
-    .label('FullName')
-    .error(new Error('Please enter your fullName!')),
-  username: Joi.string()
-    .required()
-    .trim()
-    .label('Username')
-    .error(new Error('Please enter your username!')),
-  password: Joi.string()
-    .required()
-    .trim()
-    .label('Password')
-    .error(new Error('Please enter your password!'))
-};
+  login() {
+    return {
+      username: super.strUsername().required(),
+      password: super.strPassword().required()
+    };
+  }
+
+  register() {
+    return {
+      fullName: Joi.string().required(),
+      username: super.strUsername().required(),
+      password: super.strPassword().required()
+    };
+  }
+}
+
+module.exports = AuthValidator;

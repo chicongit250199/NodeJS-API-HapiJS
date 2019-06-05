@@ -5,8 +5,10 @@ const USER_ROLE = {
 };
 
 const SALT_ROUNDS = 10;
+const JWT_SECRET = 'codebase';
 
 module.exports = {
   USER_ROLE,
-  SALT_ROUNDS
+  SALT_ROUNDS,
+  JWT_SECRET
 };

@@ -1,19 +1,25 @@
-const service = require('./service');
+const AuthService = require('./service');
 
-exports.login = async request => {
-  try {
-    const { username, password } = request.payload;
-    return await service.login(username, password);
-  } catch (err) {
-    throw err;
+class AuthController {
+  constructor() {
+    this.service = new AuthService();
   }
-};
 
-exports.register = async request => {
-  try {
-    const { username, password } = request.payload;
-    return await service.register(username, password);
-  } catch (err) {
-    throw err;
+  login(request) {
+    try {
+      return this.service.login(request.payload);
+    } catch (err) {
+      throw err;
+    }
   }
-};
+
+  register(request) {
+    try {
+      return this.service.register(request.payload);
+    } catch (err) {
+      throw err;
+    }
+  }
+}
+
+module.exports = AuthController;

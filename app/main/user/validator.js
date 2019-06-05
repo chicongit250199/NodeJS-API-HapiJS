@@ -1,23 +1,30 @@
 const Joi = require('joi');
-const { idNumber, queryParams, strUsername, strPassword } = require('../../utils/validatorUtils');
+const BaseValidator = require('../../base/BaseValidator');
 
-exports.queryParams = queryParams;
+class UserValidator extends BaseValidator {
+  constructor() {
+    super();
+    this.create = this.create();
+    this.update = this.update();
+  }
 
-exports.idParam = idNumber()
-  .required()
-  .description('id is required');
+  create() {
+    return {
+      fullName: Joi.string().required(),
+      username: super.strUsername().required(),
+      password: super.strPassword().required(),
+      roleId: Joi.number()
+        .required()
+        .default(3)
+    };
+  }
 
-exports.create = {
-  fullName: Joi.string().required(),
-  username: strUsername().required(),
-  password: strPassword().required(),
-  roleId: Joi.number()
-    .required()
-    .default(3)
-};
+  update() {
+    return {
+      fullName: Joi.string(),
+      roleId: Joi.number().default(3)
+    };
+  }
+}
 
-exports.update = {
-  fullName: Joi.string(),
-  password: strPassword(),
-  roleId: Joi.number().default(3)
-};
+module.exports = UserValidator;
