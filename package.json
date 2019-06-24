@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node app",
-    "dev": "NODE_ENV=development nodemon",
+    "dev": "nodemon app",
     "lint": "./node_modules/.bin/eslint '**/*.{js,jsx}' --quiet",
     "watch:lint": "node node_modules/eslint-watch/bin/esw -w --fix",
     "format": "prettier --write '**/*.{js,jsx}'",
@@ -20,7 +20,8 @@
     "test:watch:integration": "npm run test:integration -- --watch",
     "test:coverage": "npm test -- --coverage",
     "test:coverage:unit": "npm run test:unit -- --coverage",
-    "test:coverage:integration": "npm run test:integration -- --coverage"
+    "test:coverage:integration": "npm run test:integration -- --coverage",
+    "knex:refresh": "knex migrate:rollback && knex migrate:latest && knex seed:run"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "bcrypt": "^3.0.6",
     "boom": "^7.3.0",
     "dotenv": "^8.0.0",
+    "faker": "^4.1.0",
     "glob": "^7.1.4",
     "hapi": "^18.1.0",
     "hapi-auth-jwt2": "^8.6.1",

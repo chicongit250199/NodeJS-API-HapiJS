@@ -1,11 +1,11 @@
-const UserController = require('./controller');
-const UserValidator = require('./validator');
+const EnginnerController = require('./controller');
+const EngineerValidator = require('./validator');
 
-const controller = new UserController();
-const validator = new UserValidator();
+const controller = new EnginnerController();
+const validator = new EngineerValidator();
 
 exports.getMany = {
-  description: 'Get User list',
+  description: 'Get Engineer list',
   notes: 'Return User items',
   tags: ['api', 'v1'],
   handler: controller.getMany.bind(controller),
@@ -16,7 +16,7 @@ exports.getMany = {
 };
 
 exports.getOne = {
-  description: 'Get a User',
+  description: 'Get a Engineer',
   notes: 'Return a User by id',
   tags: ['api', 'v1'],
   handler: controller.getOne.bind(controller),
@@ -29,7 +29,7 @@ exports.getOne = {
 };
 
 exports.createOne = {
-  description: 'Create a new User',
+  description: 'Create a new Engineer',
   notes: 'Return created User',
   tags: ['api', 'v1'],
   handler: controller.createOne.bind(controller),
@@ -40,7 +40,7 @@ exports.createOne = {
 };
 
 exports.updateOne = {
-  description: 'Update User',
+  description: 'Update Engineer',
   notes: 'Return updated User by id',
   tags: ['api', 'v1'],
   handler: controller.updateOne.bind(controller),
@@ -54,7 +54,7 @@ exports.updateOne = {
 };
 
 exports.deleteOne = {
-  description: 'Delete a User',
+  description: 'Delete a Engineer',
   notes: 'Return deleted User by id',
   tags: ['api', 'v1'],
   handler: controller.deleteOne.bind(controller),

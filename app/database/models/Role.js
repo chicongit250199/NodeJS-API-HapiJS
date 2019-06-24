@@ -8,12 +8,12 @@ class Role extends CustomModel {
 
   static get relationMappings() {
     return {
-      users: {
+      managers: {
         relation: CustomModel.HasManyRelation,
-        modelClass: path.join(__dirname, '/User'),
+        modelClass: path.join(__dirname, './Manager'),
         join: {
           from: 'roles.id',
-          to: 'users.roleId'
+          to: 'managers.roleId'
         }
       }
     };

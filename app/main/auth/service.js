@@ -10,7 +10,7 @@ class AuthService {
   async login(payload) {
     try {
       const { username, password } = payload;
-      const user = await Models.User.query()
+      const user = await Models.Manager.query()
         .findOne({ username })
         .joinRelation('roles')
         .select('users.*', 'roles.name as scope', 'users.password as hashPassword');
@@ -37,13 +37,13 @@ class AuthService {
   async register(payload) {
     try {
       const { username, password } = payload;
-      const user = await Models.User.query().findOne({ username });
+      const user = await Models.Manager.query().findOne({ username });
       if (user) {
         return Boom.conflict('User is exist');
       }
 
       const hashPassword = await PasswordUtils.hash(password);
-      const result = await Models.User.query().insert({
+      const result = await Models.Manager.query().insert({
         username,
         password: hashPassword,
         roleId: CONSTANTS.USER_ROLE.USER

@@ -1,13 +1,9 @@
 const path = require('path');
 const CustomModel = require('./CustomModel');
 
-class User extends CustomModel {
+class Project extends CustomModel {
   static get tableName() {
-    return 'users';
-  }
-
-  static get $hidden() {
-    return ['password'];
+    return 'projects';
   }
 
   $beforeInsert() {
@@ -21,16 +17,15 @@ class User extends CustomModel {
 
   static get relationMappings() {
     return {
-      roles: {
+      team: {
         relation: CustomModel.BelongsToOneRelation,
-        modelClass: path.join(__dirname, '/Role'),
+        modelClass: path.join(__dirname, './Project'),
         join: {
-          from: 'users.roleId',
-          to: 'roles.id'
+          from: 'teams.projectId',
+          to: 'projects.id'
         }
       }
     };
   }
 }
-
-module.exports = User;
+module.exports = Project;

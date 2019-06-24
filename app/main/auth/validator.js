@@ -17,7 +17,6 @@ class AuthValidator extends BaseValidator {
 
   register() {
     return {
-      fullName: Joi.string().required(),
       username: super.strUsername().required(),
       password: super.strPassword().required()
     };
