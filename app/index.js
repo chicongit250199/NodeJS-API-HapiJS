@@ -11,8 +11,8 @@ const CONSTANTS = require('./constants/index');
 require('dotenv').config();
 
 const server = new Hapi.Server({
-  host: process.env.APP_HOST,
-  port: process.env.APP_PORT,
+  host: process.env.HOST,
+  port: process.env.PORT,
   routes: {
     cors: true,
     validate: {
