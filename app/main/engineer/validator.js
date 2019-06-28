@@ -18,7 +18,10 @@ class EngineerValidator extends BaseValidator {
       email: super.strEmail().required(),
       skype: super.strEmail().required(),
       expYear: Joi.number().required(),
-      status: Joi.number().required()
+      status: Joi.number().required(),
+      skills : Joi.array()
+      //engineerId: Joi.number().required(),
+      // skilId: Joi.number().required() 
     };
   }
 

@@ -1,13 +1,12 @@
-const EnginnerController = require('./controller');
-const EngineerValidator = require('./validator');
+const SkillController = require('./controller');
+const SkillValidator = require('./validator');
 
-const controller = new EnginnerController();
-const validator = new EngineerValidator();
-
+const controller = new SkillController();
+const validator = new SkillValidator();
 
 exports.getMany = {
-  description: 'Get Engineer list',
-  notes: 'Return User items',
+  description: 'Get Skill list',
+  notes: 'Return Skill items',
   tags: ['api', 'v1'],
   handler: controller.getMany.bind(controller),
   auth: false,
@@ -17,8 +16,8 @@ exports.getMany = {
 };
 
 exports.getOne = {
-  description: 'Get a Engineer',
-  notes: 'Return a User by id',
+  description: 'Get a Skill',
+  notes: 'Return a Skill by id',
   tags: ['api', 'v1'],
   handler: controller.getOne.bind(controller),
   auth: false,
@@ -30,8 +29,8 @@ exports.getOne = {
 };
 
 exports.createOne = {
-  description: 'Create a new Engineer',
-  notes: 'Return created User',
+  description: 'Create a new Skill',
+  notes: 'Return created Skill',
   tags: ['api', 'v1'],
   handler: controller.createOne.bind(controller),
   auth: false,
@@ -41,8 +40,8 @@ exports.createOne = {
 };
 
 exports.updateOne = {
-  description: 'Update Engineer',
-  notes: 'Return updated User by id',
+  description: 'Update Skill',
+  notes: 'Return updated Skill by id',
   tags: ['api', 'v1'],
   handler: controller.updateOne.bind(controller),
   auth: false,
@@ -55,8 +54,8 @@ exports.updateOne = {
 };
 
 exports.deleteOne = {
-  description: 'Delete a Engineer',
-  notes: 'Return deleted User by id',
+  description: 'Delete a Skill',
+  notes: 'Return deleted Skill by id',
   tags: ['api', 'v1'],
   handler: controller.deleteOne.bind(controller),
   auth: false,

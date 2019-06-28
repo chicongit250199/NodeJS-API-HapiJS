@@ -1,12 +1,11 @@
-const EnginnerController = require('./controller');
-const EngineerValidator = require('./validator');
+const ManagerController = require('./controller');
+const ManagerValidator = require('./validator');
 
-const controller = new EnginnerController();
-const validator = new EngineerValidator();
-
+const controller = new ManagerController();
+const validator = new ManagerValidator();
 
 exports.getMany = {
-  description: 'Get Engineer list',
+  description: 'Get project list',
   notes: 'Return User items',
   tags: ['api', 'v1'],
   handler: controller.getMany.bind(controller),
