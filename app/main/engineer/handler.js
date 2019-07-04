@@ -4,7 +4,6 @@ const EngineerValidator = require('./validator');
 const controller = new EnginnerController();
 const validator = new EngineerValidator();
 
-
 exports.getMany = {
   description: 'Get Engineer list',
   notes: 'Return User items',
